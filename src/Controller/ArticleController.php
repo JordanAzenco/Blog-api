@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use App\Representation\Articles;
 use Symfony\Component\Validator\ConstraintViolationList;
-use App\Exception\ResourceValidationException;
+
 
 
 class ArticleController extends FOSRestController
@@ -33,16 +33,9 @@ class ArticleController extends FOSRestController
      *     }
      * )
     */
-    public function createAction(Article $article, ConstraintViolationList $violations)
+    public function createAction(Article $article)
     {
-        if (count($violations)) {
-            $message = 'The JSON sent contains invalid data. Here are the errors you need to correct: ';
-            foreach ($violations as $violation) {
-                $message .= '<br>'.sprintf("Field %s: %s ", $violation->getPropertyPath(), $violation->getMessage()).'<br>';
-            }
-
-            throw new ResourceValidationException($message);
-        }
+        
         $em = $this->getDoctrine()->getManager();
 
         $em->persist($article);
