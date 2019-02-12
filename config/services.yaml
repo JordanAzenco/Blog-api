@@ -19,16 +19,12 @@ services:
             - '@jms_serializer'
         tags:
             - { name: kernel.event_subscriber }     
-
-    App\Normalizer\NotFoundHttpExceptionNormalizer:
+    app.normalizer.resource_validation_exception:
+        class: App\Normalizer\NotFoundHttpExceptionNormalizer
         arguments:
             - { type: 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException' }
         tags:
             - { name: app.normalizer }
-
-    app.normalizer.resource_validation_exception:
-        alias: App\Normalizer\NotFoundHttpExceptionNormalizer
-        public: true
     
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name

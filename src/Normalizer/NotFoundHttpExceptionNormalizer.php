@@ -9,7 +9,7 @@ class NotFoundHttpExceptionNormalizer extends AbstractNormalizer
     public function normalize(\Exception $exception)
     {
         $result['code'] = Response::HTTP_NOT_FOUND;
-
+        dump($result['code']);exit;
         $result['body'] = [
             'code' => Response::HTTP_NOT_FOUND,
             'message' => $exception->getMessage()
