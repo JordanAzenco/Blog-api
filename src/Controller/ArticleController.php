@@ -52,8 +52,7 @@ class ArticleController extends FOSRestController
     *     requirements = {"id"="\d+"}
     * )
     * @Rest\View(
-    *     statusCode = 200,
-    *     serializerGroups = {"List"}
+    *     statusCode = 200
     * )
     */
             public function showAction(Article $article)
